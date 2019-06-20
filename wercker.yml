@@ -31,7 +31,7 @@ deploy:
   - internal/docker-push:
       username: $DOCKER_USER
       password: $DOCKER_PASS
-      repository: wercker/frontend
+      repository: phonglm2/wercker-frontend
       cmd: "python /pipeline/source/app.py"
       ports: 5001
 #  aws-ecs:
