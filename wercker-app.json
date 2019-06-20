@@ -4,7 +4,7 @@
       "links": [
         "api"
       ],
-      "image": "wercker/frontend",
+      "image": "phonglm2/wercker-frontend",
       "essential": true,
       "portMappings": [
         {
