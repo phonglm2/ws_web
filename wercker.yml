@@ -32,7 +32,7 @@ build:
         channel: werckerci
         username: werckerbot
 
-deploy:
+push-to-docker:
   box: python:2.7-slim
   steps:
   - pip-install
@@ -50,7 +50,8 @@ deploy:
         channel: werckerci
         username: werckerbot
 
-  aws-ecs:
+deploy-aws-ecs:
+  steps:
   - script:
       name: copy
       code: mkdir /app && cp wercker-app.json /app/
