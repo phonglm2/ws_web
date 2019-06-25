@@ -13,6 +13,14 @@ dev:
         name: start web server
         code: python app.py
         reload: true
+  after-steps:
+    - install-packages:
+        packages: curl
+    - slack-notifier:
+        url: $SLACK_API_TOKEN
+        channel: werckerci
+        username: walterbot
+
 build:
   services:
     - redis
@@ -23,6 +31,13 @@ build:
         name: copy artifacts
         code: |
           cp wercker-app.json app.py requirements.txt $WERCKER_OUTPUT_DIR
+  after-steps:
+    - install-packages:
+        packages: curl
+    - slack-notifier:
+        url: $SLACK_API_TOKEN
+        channel: werckerci
+        username: walterbot
 
 deploy:
   box: python:2.7-slim
@@ -34,6 +49,14 @@ deploy:
       repository: phonglm2/wercker-frontend
       cmd: "python /pipeline/source/app.py"
       ports: 5001
+  after-steps:
+    - install-packages:
+        packages: curl
+    - slack-notifier:
+        url: $SLACK_API_TOKEN
+        channel: werckerci
+        username: walterbot
+
 #  aws-ecs:
 #  - script:
 #      name: copy
