@@ -59,8 +59,8 @@ deploy-aws-ecs:
       key: $AWS_ACCESS_KEY
       secret: $AWS_SECRET_KEY
       region: ap-northeast-1
-      cluster-name: wercker-cluster
-      service-name: wercker
+      cluster-name: default
+      service-name: werckerci
       task-definition-name: wercker-counter
       task-definition-file: /app/wercker-app.json
       minimum-running-tasks: 1
