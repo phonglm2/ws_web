@@ -50,16 +50,23 @@ deploy:
         channel: werckerci
         username: werckerbot
 
-#  aws-ecs:
-#  - script:
-#      name: copy
-#      code: mkdir /app && cp wercker-app.json /app/
-#  - tonnu/aws-ecs:
-#      key: $AWS_ACCESS_KEY
-#      secret: $AWS_SECRET_KEY
-#      region: ap-northeast-1
-#      cluster-name: default
-#      service-name: wercker
-#      task-definition-name: wercker-counter
-#      task-definition-file: /app/wercker-app.json
-#      minimum-running-tasks: 1
+  aws-ecs:
+  - script:
+      name: copy
+      code: mkdir /app && cp wercker-app.json /app/
+  - tonnu/aws-ecs:
+      key: $AWS_ACCESS_KEY
+      secret: $AWS_SECRET_KEY
+      region: ap-northeast-1
+      cluster-name: wercker-cluster
+      service-name: wercker
+      task-definition-name: wercker-counter
+      task-definition-file: /app/wercker-app.json
+      minimum-running-tasks: 1
+  after-steps:
+    - install-packages:
+        packages: curl
+    - slack-notifier:
+        url: $SLACK_API_TOKEN
+        channel: werckerci
+        username: werckerbot
