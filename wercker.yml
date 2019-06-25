@@ -13,13 +13,6 @@ dev:
         name: start web server
         code: python app.py
         reload: true
-  after-steps:
-    - install-packages:
-        packages: curl
-    - slack-notifier:
-        url: $SLACK_API_TOKEN
-        channel: werckerci
-        username: walterbot
 
 build:
   services:
@@ -37,7 +30,7 @@ build:
     - slack-notifier:
         url: $SLACK_API_TOKEN
         channel: werckerci
-        username: walterbot
+        username: werckerbot
 
 deploy:
   box: python:2.7-slim
@@ -55,7 +48,7 @@ deploy:
     - slack-notifier:
         url: $SLACK_API_TOKEN
         channel: werckerci
-        username: walterbot
+        username: werckerbot
 
 #  aws-ecs:
 #  - script:
